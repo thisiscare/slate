@@ -242,3 +242,72 @@ date | yes | example: 2021-07-15
 <aside class="success">
 This endpoint is performing real requests towards our backend.
 </aside>
+
+# Referral Codes
+
+## Generate Referral Code (Preview)
+
+```shell
+curl -X 'GET' \
+  'https://api-sandbox01.carehealth.io/v1/covid19-test/refcode?product=PREDP_PCR&max=1&discount=100&partnerid=SM29X' \
+  -H 'accept: application/json' \
+  -H 'apikey: XXXX'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+  "status": "success",
+  "data": [
+    {
+      "location": {
+        "longitude": 103.989441,
+        "latitude": 1.359167
+      },
+      "logo": "https://doctoroneworld-dev.s3.ap-southeast-1.amazonaws.com/public/file-1610103010209?AWSAccessKeyId=AKIAJZ6RF4WFFN2RROHQ&Expires=1634044421&Signature=Wbh2OivZZm6srPqzaIG8lTbsQfI%3D",
+      "thumbnail": "https://doctoroneworld-dev.s3.ap-southeast-1.amazonaws.com/public/file-1610103002607?AWSAccessKeyId=AKIAJZ6RF4WFFN2RROHQ&Expires=1634044421&Signature=tcTYL8nTwnr0U5kWethe459YdS4%3D",
+      "id": -1,
+      "clinicCode": "CovidTest_Clinic_SG",
+      "timeZone": "Asia/Singapore",
+      "slotLimit": 10,
+      "slotMinute": 15,
+      "name": "Care health(Only for test)555",
+      "email": "qa@carehealth.io",
+      "contact": "+65900000",
+      "address": "585 North Bridge Rd, Singapore 188770",
+      "price": 100,
+      "currency": "SGD",
+      "openingHours": "24/7",
+      "city": "Singapore",
+      "country": "SG",
+      "appointmentType": "CARE_HEALTH",
+      "sort": 1,
+      "deletedAt": "null",
+      "createdAt": "2020-11-23T10:10:10.000Z",
+      "updatedAt": "2021-05-11T12:57:42.000Z"
+    }
+  ]
+}
+]
+```
+
+Create a referral code for Covid-19 that users can redeem inside our app.
+
+### HTTP Request
+
+`GET /refcode`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+product | yes | valid product code, e.g. PREDPT_PCR
+nax | yes | how many times can this code be used
+discount | yes | how much discount in percent will the user enjoy when using this code
+partnerid | yes | your unique partner ID for chargeback
+
+<aside class="success">
+This API is in an PREVIEW stage. The endpoint is responding with mock data.
+</aside>
