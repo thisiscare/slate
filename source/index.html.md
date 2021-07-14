@@ -169,3 +169,76 @@ none | no | none
 <aside class="success">
 This endpoint is performing real requests towards our backend.
 </aside>
+
+## Get Available Time Slots for Covid-19 Tests
+
+```shell
+curl -X 'GET' \
+  'https://api-sandbox01.carehealth.io/v1/covid19-test/slots?clinicCode=G141&date=2021-07-15' \
+  -H 'accept: application/json' \
+  -H 'apikey: XXXX'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+ {
+  "status": "success",
+  "data": {
+    "timeZone": "Asia/Singapore",
+    "availableSlot": [
+      {
+        "type": "RMG",
+        "date": "2021-07-15",
+        "slotId": "RMG_10460782",
+        "availability": false,
+        "startTime": "14:45",
+        "endTime": "15:00"
+      },
+      {
+        "type": "RMG",
+        "date": "2021-07-15",
+        "slotId": "RMG_10460783",
+        "availability": false,
+        "startTime": "15:00",
+        "endTime": "15:15"
+      },
+      {
+        "type": "RMG",
+        "date": "2021-07-15",
+        "slotId": "RMG_10460784",
+        "availability": false,
+        "startTime": "15:15",
+        "endTime": "15:30"
+      }
+    ]
+  }
+}
+  ]
+}
+]
+```
+
+Get the available time slots for Covid-19 Tests at a clinic for a specific day.
+
+Parameters:
+
+clinicCode (required)
+
+date (required)
+
+### HTTP Request
+
+`GET /slots/clinicCode=G141&date=2021-07-15`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+clinicCode | yes | valid clinic code. Example: G141
+date | yes | example: 2021-07-15
+
+<aside class="success">
+This endpoint is performing real requests towards our backend.
+</aside>
