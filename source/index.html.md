@@ -222,12 +222,6 @@ curl -X 'GET' \
 
 Get the available time slots for Covid-19 Tests at a clinic for a specific day.
 
-Parameters:
-
-clinicCode (required)
-
-date (required)
-
 ### HTTP Request
 
 `GET /slots/clinicCode=G141&date=2021-07-15`
