@@ -3,8 +3,6 @@ title: Care – API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - python
-  - javascript
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -81,95 +79,6 @@ curl -X 'GET' \
       "category": "predeparture",
       "active": true,
       "mark": null
-    },
-    {
-      "code": "PREDPT_DTS",
-      "testItems": [
-        "PREDPT_DTS"
-      ],
-      "name": "COVID-19 PCR Test",
-      "description": "For Raffles Medical - International Airport:\nFor bookings on Monday to Friday, patients may opt for either a Deep Throat Saliva (DTS) Test or a Nasal Swab Test.\nFor bookings on Saturday, Sunday and Public Holiday, only the Nasal Swab Test will be offered.\n\nFor Raffles Medical - Central:\nOnly DTS test will be offered.\n\nRegardless of test selected, results may take up to 48 hours to be ready after test administration.",
-      "category": "predeparture",
-      "active": true,
-      "mark": "Available in Hong Kong only"
-    },
-    {
-      "code": "ONARRIVAL_PCR",
-      "testItems": [
-        "ONARRIVAL_PCR"
-      ],
-      "name": "PCR Nasal Swab Test",
-      "description": "A long nasal swab will be inserted into the nostril to collect fluid from the back of the nose. Swabbing will be done by a healthcare professional.",
-      "category": "onarrival",
-      "active": true,
-      "mark": null
-    },
-    {
-      "code": "ONARRIVAL_IGM",
-      "testItems": [
-        "ONARRIVAL_IGM"
-      ],
-      "name": "Serology (IgM) Test",
-      "description": "A sample of blood will be taken for this test. Blood sample collection will be done by a healthcare professional.",
-      "category": "onarrival",
-      "active": true,
-      "mark": null
-    },
-    {
-      "code": "ONARRIVAL_DTS",
-      "testItems": [
-        "ONARRIVAL_DTS"
-      ],
-      "name": "COVID-19 PCR Test",
-      "description": "For Raffles Medical - International Airport:\nFor bookings on Monday to Friday, patients may opt for either a Deep Throat Saliva (DTS) Test or a Nasal Swab Test.\nFor bookings on Saturday, Sunday and Public Holiday, only the Nasal Swab Test will be offered.\n\nFor Raffles Medical - Central:\nOnly DTS test will be offered.\n\nRegardless of test selected, results may take up to 48 hours to be ready after test administration.",
-      "category": "onarrival",
-      "active": true,
-      "mark": "Available in Hong Kong only"
-    },
-    {
-      "code": "NONTRAVEL_PCR",
-      "testItems": [
-        "NONTRAVEL_PCR"
-      ],
-      "name": "PCR Nasal Swab Test",
-      "description": "A long nasal swab will be inserted into the nostril to collect fluid from the back of the nose. Swabbing will be done by a healthcare professional.",
-      "category": "nontravel",
-      "active": true,
-      "mark": null
-    },
-    {
-      "code": "NONTRAVEL_IGM",
-      "testItems": [
-        "NONTRAVEL_IGM"
-      ],
-      "name": "Serology (IgM) Test",
-      "description": "A sample of blood will be taken for this test. Blood sample collection will be done by a healthcare professional.",
-      "category": "nontravel",
-      "active": true,
-      "mark": null
-    },
-    {
-      "code": "NONTRAVEL_DTS",
-      "testItems": [
-        "NONTRAVEL_DTS"
-      ],
-      "name": "COVID-19 PCR Test",
-      "description": "For Raffles Medical - International Airport:\nFor bookings on Monday to Friday, patients may opt for either a Deep Throat Saliva (DTS) Test or a Nasal Swab Test.\nFor bookings on Saturday, Sunday and Public Holiday, only the Nasal Swab Test will be offered.\n\nFor Raffles Medical - Central:\nOnly DTS test will be offered.\n\nRegardless of test selected, results may take up to 48 hours to be ready after test administration.",
-      "category": "nontravel",
-      "active": true,
-      "mark": "Available in Hong Kong only"
-    },
-    {
-      "code": "CHINA_PREDPT_BUNDLE",
-      "testItems": [
-        "CHINA_PREDPT_PCR",
-        "CHINA_PREDPT_IGM"
-      ],
-      "name": "PCR and IgM Test Bundle (China)",
-      "description": "Required for travelers departing from Singapore to China. The bundle comprises two tests: a PCR nasal swab test and a Serology (IgM) test.",
-      "category": "predeparture",
-      "active": true,
-      "mark": "Available for travellers flying to China only."
     }
   ]
 }
@@ -180,9 +89,76 @@ List all available Covid-19 test types.
 
 The optional query parameter 'category' allows you to get only tests that are available for 'predeparture', 'onarrival', 'nontravel'.
 
+### HTTP Requests
+
+`GET /test-types`   
+`GET /test-types?category=nontravel`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+category | no | 'predeparture', 'onarrival', or 'nontravel'
+
+<aside class="success">
+This endpoint is performing real requests towards our backend.
+</aside>
+
+# Test Facilities & Available Slots
+
+## Get Testing Facilities
+
+```shell
+curl -X 'GET' \
+  'https://api-sandbox01.carehealth.io/v1/covid19-test/facilities' \
+  -H 'accept: application/json' \
+  -H 'apikey: XXXX'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+  "status": "success",
+  "data": [
+    {
+      "location": {
+        "longitude": 103.989441,
+        "latitude": 1.359167
+      },
+      "logo": "https://doctoroneworld-dev.s3.ap-southeast-1.amazonaws.com/public/file-1610103010209?AWSAccessKeyId=AKIAJZ6RF4WFFN2RROHQ&Expires=1634044421&Signature=Wbh2OivZZm6srPqzaIG8lTbsQfI%3D",
+      "thumbnail": "https://doctoroneworld-dev.s3.ap-southeast-1.amazonaws.com/public/file-1610103002607?AWSAccessKeyId=AKIAJZ6RF4WFFN2RROHQ&Expires=1634044421&Signature=tcTYL8nTwnr0U5kWethe459YdS4%3D",
+      "id": -1,
+      "clinicCode": "CovidTest_Clinic_SG",
+      "timeZone": "Asia/Singapore",
+      "slotLimit": 10,
+      "slotMinute": 15,
+      "name": "Care health(Only for test)555",
+      "email": "qa@carehealth.io",
+      "contact": "+65900000",
+      "address": "585 North Bridge Rd, Singapore 188770",
+      "price": 100,
+      "currency": "SGD",
+      "openingHours": "24/7",
+      "city": "Singapore",
+      "country": "SG",
+      "appointmentType": "CARE_HEALTH",
+      "sort": 1,
+      "deletedAt": "null",
+      "createdAt": "2020-11-23T10:10:10.000Z",
+      "updatedAt": "2021-05-11T12:57:42.000Z"
+    }
+  ]
+}
+]
+```
+
+This API lists all clinics and facilities that offer Covid-19 tests.
+
 ### HTTP Request
 
-`GET /test-types`
+`GET /facilities`
 
 ### Query Parameters
 

@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+
+git add -A
+git commit -m changed
+git push
 set -o errexit #abort if any command fails
 me=$(basename "$0")
 
