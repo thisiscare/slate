@@ -3,13 +3,13 @@ title: Care – API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
   - python
   - javascript
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+  - <a href='https://api.stoplight.io/v1/versions/bjxPhx5Ff4Zr7JrGP/export/oas.json' target='_new'>Open API Specification</a>
+  - <a href='https://editor.swagger.io/?url=https://api.stoplight.io/v1/versions/bjxPhx5Ff4Zr7JrGP/export/oas.json' target='_new'>Swagger Editor – Open API Specification</a>
 
 includes:
   - errors
@@ -42,34 +42,15 @@ The APIs expects for the API key to be included in all API requests to the serve
 You must replace <code>0433D373-88C3-44DE-B160-2AF5837CF5BD</code> with your personal API key.
 </aside>
 
-# Kittens
+# Covid-19 Test Products
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+## Get All Available Test Types
 
 ```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+curl -X 'GET' \
+  'https://api-sandbox01.carehealth.io/v1/covid19-test/test-types' \
+  -H 'accept: application/json' \
+  -H 'apikey: XXXX'
 ```
 
 > The above command returns JSON structured like this:
@@ -77,23 +58,127 @@ let kittens = api.kittens.get();
 ```json
 [
   {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
+  "status": "success",
+  "data": [
+    {
+      "code": "PREDPT_PCR",
+      "testItems": [
+        "PREDPT_PCR"
+      ],
+      "name": "PCR Nasal Swab Test",
+      "description": "A long nasal swab will be inserted into the nostril to collect fluid from the back of the nose. Swabbing will be done by a healthcare professional.",
+      "category": "predeparture",
+      "active": true,
+      "mark": null
+    },
+    {
+      "code": "PREDPT_IGM",
+      "testItems": [
+        "PREDPT_IGM"
+      ],
+      "name": "Serology (IgM) Test",
+      "description": "A sample of blood will be taken for this test. Blood sample collection will be done by a healthcare professional.",
+      "category": "predeparture",
+      "active": true,
+      "mark": null
+    },
+    {
+      "code": "PREDPT_DTS",
+      "testItems": [
+        "PREDPT_DTS"
+      ],
+      "name": "COVID-19 PCR Test",
+      "description": "For Raffles Medical - International Airport:\nFor bookings on Monday to Friday, patients may opt for either a Deep Throat Saliva (DTS) Test or a Nasal Swab Test.\nFor bookings on Saturday, Sunday and Public Holiday, only the Nasal Swab Test will be offered.\n\nFor Raffles Medical - Central:\nOnly DTS test will be offered.\n\nRegardless of test selected, results may take up to 48 hours to be ready after test administration.",
+      "category": "predeparture",
+      "active": true,
+      "mark": "Available in Hong Kong only"
+    },
+    {
+      "code": "ONARRIVAL_PCR",
+      "testItems": [
+        "ONARRIVAL_PCR"
+      ],
+      "name": "PCR Nasal Swab Test",
+      "description": "A long nasal swab will be inserted into the nostril to collect fluid from the back of the nose. Swabbing will be done by a healthcare professional.",
+      "category": "onarrival",
+      "active": true,
+      "mark": null
+    },
+    {
+      "code": "ONARRIVAL_IGM",
+      "testItems": [
+        "ONARRIVAL_IGM"
+      ],
+      "name": "Serology (IgM) Test",
+      "description": "A sample of blood will be taken for this test. Blood sample collection will be done by a healthcare professional.",
+      "category": "onarrival",
+      "active": true,
+      "mark": null
+    },
+    {
+      "code": "ONARRIVAL_DTS",
+      "testItems": [
+        "ONARRIVAL_DTS"
+      ],
+      "name": "COVID-19 PCR Test",
+      "description": "For Raffles Medical - International Airport:\nFor bookings on Monday to Friday, patients may opt for either a Deep Throat Saliva (DTS) Test or a Nasal Swab Test.\nFor bookings on Saturday, Sunday and Public Holiday, only the Nasal Swab Test will be offered.\n\nFor Raffles Medical - Central:\nOnly DTS test will be offered.\n\nRegardless of test selected, results may take up to 48 hours to be ready after test administration.",
+      "category": "onarrival",
+      "active": true,
+      "mark": "Available in Hong Kong only"
+    },
+    {
+      "code": "NONTRAVEL_PCR",
+      "testItems": [
+        "NONTRAVEL_PCR"
+      ],
+      "name": "PCR Nasal Swab Test",
+      "description": "A long nasal swab will be inserted into the nostril to collect fluid from the back of the nose. Swabbing will be done by a healthcare professional.",
+      "category": "nontravel",
+      "active": true,
+      "mark": null
+    },
+    {
+      "code": "NONTRAVEL_IGM",
+      "testItems": [
+        "NONTRAVEL_IGM"
+      ],
+      "name": "Serology (IgM) Test",
+      "description": "A sample of blood will be taken for this test. Blood sample collection will be done by a healthcare professional.",
+      "category": "nontravel",
+      "active": true,
+      "mark": null
+    },
+    {
+      "code": "NONTRAVEL_DTS",
+      "testItems": [
+        "NONTRAVEL_DTS"
+      ],
+      "name": "COVID-19 PCR Test",
+      "description": "For Raffles Medical - International Airport:\nFor bookings on Monday to Friday, patients may opt for either a Deep Throat Saliva (DTS) Test or a Nasal Swab Test.\nFor bookings on Saturday, Sunday and Public Holiday, only the Nasal Swab Test will be offered.\n\nFor Raffles Medical - Central:\nOnly DTS test will be offered.\n\nRegardless of test selected, results may take up to 48 hours to be ready after test administration.",
+      "category": "nontravel",
+      "active": true,
+      "mark": "Available in Hong Kong only"
+    },
+    {
+      "code": "CHINA_PREDPT_BUNDLE",
+      "testItems": [
+        "CHINA_PREDPT_PCR",
+        "CHINA_PREDPT_IGM"
+      ],
+      "name": "PCR and IgM Test Bundle (China)",
+      "description": "Required for travelers departing from Singapore to China. The bundle comprises two tests: a PCR nasal swab test and a Serology (IgM) test.",
+      "category": "predeparture",
+      "active": true,
+      "mark": "Available for travellers flying to China only."
+    }
+  ]
+}
 ]
 ```
 
-This endpoint retrieves all kittens.
+List all available Covid-19 test types.
+
+The optional query parameter 'category' allows you to get only tests that are available for 'predeparture', 'onarrival', 'nontravel'.
 
 ### HTTP Request
 
