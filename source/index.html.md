@@ -248,7 +248,7 @@ This endpoint is performing real requests towards our backend.
 ## Generate Referral Code (Preview)
 
 ```shell
-curl -X 'GET' \
+curl -X 'POST' \
   'https://api-sandbox01.carehealth.io/v1/covid19-test/refcode?product=PREDP_PCR&max=1&discount=100&partnerid=SM29X' \
   -H 'accept: application/json' \
   -H 'apikey: XXXX'
@@ -271,7 +271,7 @@ Create a referral code for Covid-19 that users can redeem inside our app.
 
 ### HTTP Request
 
-`GET /refcode`
+`POST /refcode`
 
 ### Query Parameters
 
@@ -281,6 +281,75 @@ product | yes | valid product code, e.g. PREDPT_PCR
 nax | yes | how many times can this code be used
 discount | yes | how much discount in percent will the user enjoy when using this code
 partnerid | yes | your unique partner ID for chargeback
+
+<aside class="success">
+This API is in an PREVIEW stage. The endpoint is responding with mock data.
+</aside>
+
+# Book a Covid-19 Test
+
+## Book a Covid-19 Test Appointment (Preview)
+
+```shell
+curl -X 'POST' \
+  'https://api-sandbox01.carehealth.io/v1/covid19-test/appointment' \
+  -H 'accept: application/json' \
+  -H 'apikey: XXXX'
+  -d '{
+  "clinicCode": "CovidTest_Clinic_SG",
+  "appointmentSlotId": "RMG_9361621",
+  "testTime": "2020-12-11T09:45:00.000Z",
+  "name": "John Doe",
+  "idType": "PASSPORT",
+  "idNumber": "X918277H",
+  "nationality": "SG",
+  "gender": "male",
+  "mobileNumber": "+658123456",
+  "email": "johndoe@gmail.com",
+  "dateOfBirth": "1962-08-05T00:00:00.000Z",
+  "timeZone": "Asia/Singapore",
+  "prepaid": "true",
+  "bizId": "SM29X"
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+  "status": "success",
+  "data": {
+    "code": "APPT-B6US6XYW"
+  }
+}
+]
+```
+
+Book a Covid-19 Test at a facility.
+
+### HTTP Request
+
+`POST /appointment`
+
+### Request Body (JSON)
+
+Parameter | Required | Description
+--------- | ------- | -----------
+clinicCode | yes | a valid clinic code, e.g. "CovidTest_Clinic_SG"
+appointmentSlotId | yes | a valid slot id, e.g. "RMG_9361621"
+testTime | yes | the time allocated to this slot, e.g. "2020-12-11T09:45:00.000Z"
+name | yes | the name of the patient, e.g."John Wang"
+idType | yes | the type of ID the patient will produce for identification. Valid types are: NRIC, PASSPORT, FIN, and HKID
+idNumber | yes | the ID number, e.g. "X0861234B"
+nationality | yes | the patient's nationality, e.g. "SG"
+gender | yes | "male", "female", "unknown"
+mobileNumber | yes | e.g. "+6581234565"
+email | yes | e.g. "johndoe@gmail.com"
+dateOfBirth | yes | e.g. "1992-08-05T00:00:00.000Z"
+timeZone | yes | e.g. "Asia/Singapore"
+prepaid | yes | is the test pre-paid or does the patient have to pay at the clinic? e.g. "true", "false"
+bizId | yes | your partner ID
 
 <aside class="success">
 This API is in an PREVIEW stage. The endpoint is responding with mock data.
