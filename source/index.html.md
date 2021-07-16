@@ -372,7 +372,7 @@ curl -X 'POST' \
 
 > The above command returns a PNG image.
 
-![](./images/qr.png)
+![](https://thisiscare.github.io/slate/images/qr-04cd18d4.jpg)
 
 Book a Covid-19 Test at a facility and receive a QR code.
 
