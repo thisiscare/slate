@@ -347,6 +347,9 @@
                   <li>
                     <a href="#book-a-covid-19-test-appointment-preview" class="toc-h2 toc-link" data-title="Book a Covid-19 Test Appointment (Preview)">Book a Covid-19 Test Appointment (Preview)</a>
                   </li>
+                  <li>
+                    <a href="#qr-code-book-a-covid-19-test-appointment-preview" class="toc-h2 toc-link" data-title="QR-Code: Book a Covid-19 Test Appointment (Preview)">QR-Code: Book a Covid-19 Test Appointment (Preview)</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -580,7 +583,7 @@ This endpoint is performing real requests towards our backend.
 This endpoint is performing real requests towards our backend.
 </aside>
 <h1 id='referral-codes'>Referral Codes</h1><h2 id='generate-referral-code-preview'>Generate Referral Code (Preview)</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'POST'</span> <span class="se">\</span>
-  <span class="s1">'https://api-sandbox01.carehealth.io/v1/covid19-test/refcode?product=PREDP_PCR&amp;max=1&amp;discount=100&amp;partnerid=SM29X'</span> <span class="se">\</span>
+  <span class="s1">'https://api-sandbox02.carehealth.io/v1/covid19-test/refcode?product=PREDP_PCR&amp;max=1&amp;discount=100&amp;partnerid=SM29X'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'apikey: XXXX'</span>
 </code></pre></div>
@@ -669,6 +672,115 @@ This API is in an PREVIEW stage. The endpoint is responding with mock data.
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>POST /appointment</code></p>
 <h3 id='request-body-json'>Request Body (JSON)</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>clinicCode</td>
+<td>yes</td>
+<td>a valid clinic code, e.g. &quot;CovidTest_Clinic_SG&quot;</td>
+</tr>
+<tr>
+<td>appointmentSlotId</td>
+<td>yes</td>
+<td>a valid slot id, e.g. &quot;RMG_9361621&quot;</td>
+</tr>
+<tr>
+<td>testTime</td>
+<td>yes</td>
+<td>the time allocated to this slot, e.g. &quot;2020-12-11T09:45:00.000Z&quot;</td>
+</tr>
+<tr>
+<td>name</td>
+<td>yes</td>
+<td>the name of the patient, e.g.&quot;John Wang&quot;</td>
+</tr>
+<tr>
+<td>idType</td>
+<td>yes</td>
+<td>the type of ID the patient will produce for identification. Valid types are: NRIC, PASSPORT, FIN, and HKID</td>
+</tr>
+<tr>
+<td>idNumber</td>
+<td>yes</td>
+<td>the ID number, e.g. &quot;X0861234B&quot;</td>
+</tr>
+<tr>
+<td>nationality</td>
+<td>yes</td>
+<td>the patient&#39;s nationality, e.g. &quot;SG&quot;</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>yes</td>
+<td>&quot;male&quot;, &quot;female&quot;, &quot;unknown&quot;</td>
+</tr>
+<tr>
+<td>mobileNumber</td>
+<td>yes</td>
+<td>e.g. &quot;+6581234565&quot;</td>
+</tr>
+<tr>
+<td>email</td>
+<td>yes</td>
+<td>e.g. &quot;johndoe@gmail.com&quot;</td>
+</tr>
+<tr>
+<td>dateOfBirth</td>
+<td>yes</td>
+<td>e.g. &quot;1992-08-05T00:00:00.000Z&quot;</td>
+</tr>
+<tr>
+<td>timeZone</td>
+<td>yes</td>
+<td>e.g. &quot;Asia/Singapore&quot;</td>
+</tr>
+<tr>
+<td>prepaid</td>
+<td>yes</td>
+<td>is the test pre-paid or does the patient have to pay at the clinic? e.g. &quot;true&quot;, &quot;false&quot;</td>
+</tr>
+<tr>
+<td>bizId</td>
+<td>yes</td>
+<td>your partner ID</td>
+</tr>
+</tbody></table>
+<h2 id='qr-code-book-a-covid-19-test-appointment-preview'>QR-Code: Book a Covid-19 Test Appointment (Preview)</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'POST'</span> <span class="se">\</span>
+  <span class="s1">'https://api-sandbox01.carehealth.io/v1/covid19-test/appointmentqr'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'apikey: XXXX'</span>
+  <span class="nt">-d</span> <span class="s1">'{
+  "clinicCode": "CovidTest_Clinic_SG",
+  "appointmentSlotId": "RMG_9361621",
+  "testTime": "2020-12-11T09:45:00.000Z",
+  "name": "John Doe",
+  "idType": "PASSPORT",
+  "idNumber": "X918277H",
+  "nationality": "SG",
+  "gender": "male",
+  "mobileNumber": "+658123456",
+  "email": "johndoe@gmail.com",
+  "dateOfBirth": "1962-08-05T00:00:00.000Z",
+  "timeZone": "Asia/Singapore",
+  "prepaid": "true",
+  "bizId": "SM29X"
+}'</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns a PNG image.</p>
+</blockquote>
+
+<p><img src="images/images/qr.png" alt="" /></p>
+
+<p>Book a Covid-19 Test at a facility and receive a QR code.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>POST /appointmentqr</code></p>
+<h3 id='request-body-json-2'>Request Body (JSON)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
