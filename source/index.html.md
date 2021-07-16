@@ -350,7 +350,7 @@ bizId | yes | your partner ID
 ```shell
 curl -X 'POST' \
   'https://api-sandbox01.carehealth.io/v1/covid19-test/appointmentqr' \
-  -H 'accept: application/json' \
+  -H 'accept: application/png' \
   -H 'apikey: XXXX'
   -d '{
   "clinicCode": "CovidTest_Clinic_SG",
